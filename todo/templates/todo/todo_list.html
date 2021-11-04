@@ -1,0 +1,51 @@
+{% extends 'main/base_layout.html' %}
+
+
+{# override block title #}
+
+{% block title %}
+    TODO Task List
+{% endblock %}
+
+
+{# override block main-content #}
+
+{% block main-content %}
+
+{# example about for loop #}
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <td> ID</td>
+        <td> Name</td>
+        <td>Priority</td>
+        <td>Description</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+
+    <tbody>
+        {% for task in task_list %}
+    <tr {% if task.priority > 3 %} style="color:red" {% else %} style="color:green" {% endif %} >
+        <td>{{task.id}}</td>
+
+        <td>{{ task.name }}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.description | truncatewords:5 | title}}</td>
+        <td>
+            <a class="btn btn-info" href="{% url 'todo:todo-detail' task.id %}">View</a>
+            <a class="btn btn-info" href="{% url 'todo:todo-update' task.id %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'todo:todo-delete' task.id %}">Delete</a>
+
+        </td>
+    </tr>
+        {% empty %}
+    <tr>
+        <td colspan="3" class="text-center"> Sorry, no task in this list.</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{%endblock%}

@@ -1,0 +1,54 @@
+{% extends 'main/base_layout.html' %}
+{% load my_custom_tags %}
+
+
+{% block main-content %}
+
+
+{% my_simple_tag user as my_simple_variable %}
+
+<h5>  {{my_simple_variable}} </h5>
+
+
+<h1> WELCOME TO TODO DETAIL </h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Task ID</td>
+        <td>TasK Name</td>
+        <td>Priority</td>
+        <td>Description</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr {% if task_priority > 3 %} style="color:red" {% else %} style="color:green" {% endif %} >
+        <td>{{task_id}}</td>
+
+        <td>{{task_name | name_filter_cleaner }}</td>
+
+        <td>{{task_priority}}</td>
+        <td>{{task_description | truncatewords:3}}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% endblock %}
+
+{# Example for if condition #}
+
+{% if task_priority > 3 %}
+    <h1> HIGH PRIORITY TASK</h1>
+{% else %}
+    <h1> LOW PRIORITY TASK</h1>
+{% endif %}
+
+
+<a href="{% url 'todo:index' %}">Back to Index</a>
+<br/>
+<a href="{% url 'todo:todo-list' %}">Back to list</a>
+
+<h1>INDEX {% url 'todo:index' %}</h1>
+
+<h1>List {% url 'todo:todo-list' %}</h1>
