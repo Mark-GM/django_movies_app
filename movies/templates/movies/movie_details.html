@@ -1,0 +1,29 @@
+{% extends 'main/base_layout.html' %} {% block main-content %}
+<table class="table">
+  <thead>
+    <tr class="text-primary">
+      <td>Name</td>
+      <td>Description</td>
+      <td>Poster</td>
+      <td>Rate</td>
+      <td>Likes</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{movie.name }}</td>
+      <td>{{movie.description }}</td>
+      <td>
+        <img
+          src="{{movie.poster.url}}"
+          style="width: 250px"
+          alt="{{movie.name}}"
+        />
+      </td>
+      <td>{{movie.rate }}</td>
+      <td>{{movie.likes }}</td>
+    </tr>
+  </tbody>
+</table>
+<a class="btn btn-dark" href="{% url 'movies:index' %}">Back to Movies</a>
+{% endblock %}

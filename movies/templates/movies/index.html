@@ -1,0 +1,35 @@
+{% extends 'main/base_layout.html' %}
+{% load my_custom_tags %}
+{% block main-content %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Movie</td>
+        <td>Description</td>
+        <td>Likes</td>
+        <td>Watches</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for movie in movies %}
+
+    <tr>
+        <td>{{movie.name}}</td>
+        <td>{{movie.description}}</td>
+        <td>{{movie.likes}}</td>
+        <td>{{movie.watch_count}}</td>
+        <td>
+            <a href="{% url 'movies:movie-details' movie.id %}" class="btn btn-info"> View</a>
+            <a href="{% url 'movies:edit-movie' movie.id %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'movies:delete-movie' movie.id %}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}
