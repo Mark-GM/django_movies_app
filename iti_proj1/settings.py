@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo',
-    'movies'
+    'movies',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,14 @@ MEDIA_ROOT = BASE_DIR.joinpath("media_root")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# email settings
+EMAIL_HOST = secrets['EMAIL_HOST']
+EMAIL_PORT = secrets['EMAIL_PORT']
+EMAIL_HOST_USER = secrets['EMAIL_USER']
+EMAIL_HOST_PASSWORD = secrets['EMAIL_PASSWORD']
+EMAIL_USE_TLS = True
+
+# override default redirection after login/logout
+LOGIN_REDIRECT_URL = "/movies/"
+LOGOUT_REDIRECT_URL = "/movies/"

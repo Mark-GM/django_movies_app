@@ -15,9 +15,13 @@
       <td>{{movie.description }}</td>
       <td>
         <img
+          {% if movie.poster %}
           src="{{movie.poster.url}}"
           style="width: 250px"
           alt="{{movie.name}}"
+          {% else %}
+          alt="{{movie.name}}"
+          {% endif %}
         />
       </td>
       <td>{{movie.rate }}</td>
